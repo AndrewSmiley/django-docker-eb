@@ -1,5 +1,5 @@
 *.pyc
-/.idea
+/.idea/
 
 # Elastic Beanstalk Files
 .elasticbeanstalk/*
