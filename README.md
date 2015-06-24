@@ -26,12 +26,14 @@ So basically, create your Django project locally. Make sure it runs locally. I w
 
     python manage.py runserver. 
 
-Since we know our project works, let's go ahead and create the dependencies file, requirements.txt. from the base directory of your project, call 
+Since we know our project works, let's go ahead and create the dependencies file, requirements.txt. from the base directory of your project, run 
 
     pip freeze > requirements.txt
+    
 In addition, you'll want to add gunicorn to your requirements.txt.
 
 Now, from the either the terminal or your favorite IDE, add a Dockerfile. Mine looked like this:
+
     FROM ubuntu
     MAINTAINER Andrew Smiley
     # Update packages
@@ -105,5 +107,23 @@ Now, add in this program directive to run Gunicorn with Supervisor
     directory=/src/
 
 
+Once we've completed all of these steps, we're ready to zip our project and upload to Elastic Beanstalk.  
+Zip all the contents of your base project directory and deploy to Elastic beanstalk
 
-Once we've completed all of these steps, we're ready to zip our project and upload to Elastic Beanstalk.  Zip all the contents of your base project directory and deploy to Elastic beanstalk
+Alternatively, try this simple sequence:
+
+  git clone REPO_URL/django-docker-eb.git
+  cd django-docker-eb
+  eb init -p Docker
+  eb create dev-env
+  eb create dev-env2
+  
+Then visit the url you are given when the final step completes.
+
+The above assumes that you have set a user with the appropriate credentials in your 
+environment.  If you have not done so, you'll be asked by eb init for credentials.
+
+The easy approach is with IAM, create user. Name the user dj-docker-eb-test 
+and confer admin privilege. Pass the new credentials to eb init.
+
+Ship it!
