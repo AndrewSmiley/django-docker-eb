@@ -1,5 +1,6 @@
 *.pyc
 .idea/
+Archive*.zip
 
 # Elastic Beanstalk Files
 .elasticbeanstalk/*
