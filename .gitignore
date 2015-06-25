@@ -1,4 +1,4 @@
-I*.pyc
+*.pyc
 .idea/
 
 # Elastic Beanstalk Files
