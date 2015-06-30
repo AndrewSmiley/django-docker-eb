@@ -63,7 +63,7 @@ Now, from the either the terminal or your favorite IDE, add a Dockerfile. Mine l
     #basically this is the command to execute when we run the contaner. This is the default for sudo     docker run for this image
     CMD supervisord -c /src/supervisord.conf
 
-Now that we have a Docker file, we'll want to add a Dockerrun.aws.json file. Now, according to the AWS EB+Docker docs, if you deploy a project with a Dockerfile you do not have to create a Dockerrun.aws.json file. <i>HOWEVER,</i> like many of the other wonderful services provided by Amazon (I'm a little jaded as you can tell), the documentation does not tell the story. My experience was that you DO in face need both the Dockerfile and Dockerrun.aws.json to deploy to EB in this way. Anyway, your Dockerrun.aws.json can be as simple or complex as you like. My looked like 
+Now that we have a Docker file, we'll want to add a Dockerrun.aws.json file. Now, according to the AWS EB+Docker docs, if you deploy a project with a Dockerfile you do not have to create a Dockerrun.aws.json file. <i>HOWEVER,</i> like many of the other wonderful services provided by Amazon (I'm a little jaded as you can tell), the documentation does not tell the story. My experience was that you DO in face need both the Dockerfile and Dockerrun.aws.json to deploy to EB in this way. Anyway, your Dockerrun.aws.json can be as simple or complex as you like. Mine looked like 
 
     {
       "AWSEBDockerrunVersion": "1",
@@ -112,18 +112,16 @@ Zip all the contents of your base project directory and deploy to Elastic beanst
 
 Alternatively, try this simple sequence:
 
-  git clone REPO_URL/django-docker-eb.git
-  cd django-docker-eb
-  eb init -p Docker
-  eb create dev-env
-  eb create dev-env2
-  
+    git clone REPO_URL/django-docker-eb.git
+    cd django-docker-eb
+    eb init -p Docker
+    eb create dev-env
+
 Then visit the url you are given when the final step completes.
 
 The above assumes that you have set a user with the appropriate credentials in your 
 environment.  If you have not done so, you'll be asked by eb init for credentials.
 
-The easy approach is with IAM, create user. Name the user dj-docker-eb-test 
+The easy approach is with IAM. Create a user. Name the user dj-docker-eb-test-user
 and confer admin privilege. Pass the new credentials to eb init.
 
-Ship it!
